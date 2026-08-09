@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pratha By Priyal — Custom-Tailored Ethnic Wear</title>
+<meta name="description" content="Pratha By Priyal — handcrafted, custom-tailored Indian ethnic wear. Rakhi gift collection & bespoke pieces. Made to your size. Order on WhatsApp." />
+<link rel="icon" href="assets/logo.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   PRATHA BY PRIYAL  —  quiet-luxury / editorial minimal
+   Inspired by torani.in : warm off-white · charcoal · airy
+   ========================================================= */
+:root{
+  --bg:#efedea;         /* warm off-white page */
+  --bg-2:#f5f4f1;       /* soft panel          */
+  --paper:#faf9f7;      /* cards               */
+  --ink:#1c1b1b;        /* charcoal text       */
+  --ink-soft:#4f4c48;
+  --muted:#928d85;      /* grey                */
+  --line:rgba(28,27,27,.13);
+  --line-soft:rgba(28,27,27,.07);
+  --gold:#a2864c;       /* used sparingly (logo fallback only) */
+  --shadow:0 30px 70px -40px rgba(28,27,27,.35);
+  --sans:'Nanum Gothic','Helvetica Neue',Arial,system-ui,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --wrap:1280px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  line-height:1.8;
+  letter-spacing:.2px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(var(--wrap),90vw);margin-inline:auto}
+
+/* ---------- Typographic helpers ---------- */
+.eyebrow{
+  font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--muted);font-weight:400;display:inline-block;
+}
+.section-head{text-align:center;max-width:640px;margin:0 auto 3.5rem}
+.section-head h2{
+  font-weight:400;font-size:clamp(1.35rem,3vw,2rem);line-height:1.3;
+  margin:1rem 0 1.1rem;color:var(--ink);text-transform:uppercase;letter-spacing:.28em;
+}
+.section-head p{color:var(--ink-soft);font-size:.98rem;font-weight:400;letter-spacing:.2px}
+.rule{width:38px;height:1px;background:var(--ink);opacity:.35;margin:1.1rem auto}
+
+/* ---------- Announcement bar ---------- */
+.announce{
+  background:var(--ink);color:#e9e6df;text-align:center;
+  font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;font-weight:400;padding:.6rem 1rem;
+}
+
+/* ---------- Header / nav ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(239,237,234,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand img{height:44px;width:auto}
+.brand .fallback{font-family:var(--serif);font-size:1.7rem;color:var(--ink);letter-spacing:.04em;display:none}
+.nav-links{display:flex;gap:2.4rem;align-items:center}
+.nav-links a{
+  font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+  opacity:.85;transition:.25s;position:relative;padding:.3rem 0;font-weight:400;
+}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--ink);transition:.3s}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{width:100%}
+/* scoped under .nav-links a so it beats the generic link rule's padding/size */
+.nav-links a.nav-cta{
+  border:1px solid var(--ink);color:var(--ink);padding:.62rem 1.25rem;
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;transition:.25s;
+  opacity:.92;white-space:nowrap;line-height:1;
+}
+.nav-links a.nav-cta:hover{background:var(--ink);color:var(--bg);opacity:1}
+.nav-links a.nav-cta::after{display:none}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:.4rem}
+.burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
+
+/* ---------- Hero ---------- */
+.hero{min-height:84vh;display:flex;align-items:center;padding:5rem 0;border-bottom:1px solid var(--line-soft)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.hero h1{
+  font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.22;color:var(--ink);
+  letter-spacing:.5px;
+}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.hero .lede{color:var(--ink-soft);font-size:1rem;max-width:42ch;margin:1.8rem 0 2.4rem;line-height:1.9}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;cursor:pointer;border:0;
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+  padding:1rem 2rem;transition:.28s;font-weight:400;
+}
+.btn-dark{background:var(--ink);color:var(--bg)}
+.btn-dark:hover{background:#000}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+
+.hero-visual{
+  aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--bg-2);
+  border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;text-align:center;
+}
+.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-visual.has-img{border:0}
+.hero-visual.has-img .mono{display:none}
+.hero-visual .mono{font-family:var(--serif);color:var(--ink);font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:.04em;padding:2rem;z-index:1}
+.hero-visual .mono span{display:block;font-family:var(--sans);font-size:.24em;letter-spacing:.5em;color:var(--muted);margin-top:.6rem;text-transform:uppercase}
+
+/* ---------- USP strip ---------- */
+.usps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border-block:1px solid var(--line-soft)}
+.usp{background:var(--bg);padding:2.4rem 1.3rem;text-align:center}
+.usp h4{font-weight:400;font-size:.74rem;letter-spacing:.2em;color:var(--ink);text-transform:uppercase;margin-bottom:.5rem}
+.usp p{color:var(--muted);font-size:.82rem;letter-spacing:.2px}
+
+/* ---------- Sections ---------- */
+section.pad{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.section-alt{background:var(--bg-2)}
+
+/* ---------- Product grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem 1.6rem}
+.card{background:transparent;display:flex;flex-direction:column;transition:.3s;position:relative}
+.card .thumb{
+  aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--bg-2);
+  display:flex;align-items:center;justify-content:center;
+}
+.card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .thumb img{transform:scale(1.04)}
+.card .thumb .ph{font-family:var(--serif);color:var(--ink);font-size:1.4rem;text-align:center;padding:1.4rem;opacity:.6;line-height:1.3}
+.badge{
+  position:absolute;top:12px;left:12px;z-index:2;
+  background:rgba(250,249,247,.9);color:var(--ink);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:400;padding:.34rem .6rem;border:1px solid var(--line);
+}
+.badge.box{top:auto;bottom:12px;left:12px}
+.card-body{padding:1rem .1rem 0;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.card-body .cat{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.card-body h3{font-weight:400;font-size:1.02rem;line-height:1.3;color:var(--ink);letter-spacing:.06em}
+.price{display:flex;align-items:baseline;gap:.6rem;margin-top:.1rem}
+.price .now{color:var(--ink);font-size:.95rem;letter-spacing:.03em}
+.price .was{color:var(--muted);text-decoration:line-through;font-size:.82rem}
+.price .off{color:var(--muted);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase}
+.card .order{
+  margin-top:1rem;width:100%;background:transparent;border:1px solid var(--ink);
+  color:var(--ink);font-size:.62rem;padding:.8rem 1rem;letter-spacing:.2em;
+}
+.card .order:hover{background:var(--ink);color:var(--bg)}
+.wa-ic{width:14px;height:14px;fill:currentColor}
+
+/* ---------- Rakhi feature banner ---------- */
+.rakhi-note{
+  display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap;justify-content:center;text-align:center;
+  border-block:1px solid var(--line);padding:1.4rem 1.8rem;margin-bottom:3.4rem;
+}
+.rakhi-note .chip{display:flex;align-items:center;gap:.55rem;color:var(--ink-soft);font-size:.82rem;letter-spacing:.05em}
+.rakhi-note .chip b{color:var(--ink);font-weight:400}
+.rakhi-note .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+
+/* ---------- Custom / designer section ---------- */
+.custom{display:grid;grid-template-columns:1fr 1fr;background:var(--paper);overflow:hidden;border:1px solid var(--line-soft)}
+.custom .visual{position:relative;min-height:100%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;padding:3rem;text-align:center;overflow:hidden}
+.custom .visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.custom .visual::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(20,18,17,.32),rgba(20,18,17,.5))}
+.custom .visual .mono{font-family:var(--serif);color:#fff;font-style:italic;text-shadow:0 2px 22px rgba(0,0,0,.5);font-size:clamp(2rem,4vw,3rem);line-height:1.15;position:relative;z-index:2}
+.custom .content{padding:clamp(2.4rem,4.5vw,4rem)}
+.custom .content h2{font-weight:400;font-size:clamp(1.4rem,3vw,2rem);line-height:1.3;margin:1rem 0 1.2rem;color:var(--ink);text-transform:uppercase;letter-spacing:.24em}
+.custom .content p{color:var(--ink-soft);margin-bottom:1.4rem;font-size:.96rem;line-height:1.9}
+.custom ul{list-style:none;margin:0 0 2rem;display:grid;gap:.9rem}
+.custom li{display:flex;gap:.8rem;align-items:flex-start;color:var(--ink-soft);font-size:.92rem}
+.custom li::before{content:"";width:16px;height:1px;background:var(--ink);flex:none;margin-top:.75em;opacity:.5}
+
+/* ---------- Craft / about ---------- */
+.craft{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-soft)}
+.craft .item{padding:2.6rem 2rem;border-right:1px solid var(--line-soft)}
+.craft .item:last-child{border-right:0}
+.craft .item .n{font-size:.7rem;letter-spacing:.3em;color:var(--muted)}
+.craft .item h4{font-weight:400;font-size:1.05rem;margin:.7rem 0 .6rem;color:var(--ink);letter-spacing:.08em}
+.craft .item p{color:var(--ink-soft);font-size:.9rem;line-height:1.85}
+
+/* ---------- Final CTA ---------- */
+.finale{text-align:center;padding:clamp(3rem,7vw,6rem) 1.5rem;border:1px solid var(--line-soft);background:var(--bg-2)}
+.finale h2{font-weight:400;font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1.3;margin-bottom:1rem;color:var(--ink);text-transform:uppercase;letter-spacing:.22em}
+.finale p{color:var(--ink-soft);max-width:50ch;margin:0 auto 2.2rem;line-height:1.9}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line-soft);padding:4rem 0 2.2rem;background:var(--ink);color:#c8c4bb}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
+.foot-brand img{height:52px;margin-bottom:1.2rem}
+.foot-brand p{color:#9a958c;font-size:.88rem;max-width:34ch;line-height:1.85}
+.foot-col h5{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:#e9e6df;margin-bottom:1.2rem;font-weight:400}
+.foot-col a,.foot-col span{display:block;color:#9a958c;font-size:.88rem;margin-bottom:.7rem;transition:.2s;letter-spacing:.04em}
+.foot-col a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.09);padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:#7d786f;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- Floating WhatsApp ---------- */
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:60;width:52px;height:52px;border-radius:50%;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 14px 30px -10px rgba(28,27,27,.5);transition:.25s;
+}
+.wa-float:hover{transform:scale(1.08);background:#000}
+.wa-float svg{width:26px;height:26px;fill:#efedea}
+
+/* ---------- Reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media(max-width:1024px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .usps{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px){
+  .nav-links{
+    position:fixed;inset:0 0 0 auto;width:min(80vw,320px);flex-direction:column;justify-content:center;
+    gap:1.8rem;background:var(--bg);padding:2rem;
+    transform:translateX(100%);transition:.35s;border-left:1px solid var(--line);
+  }
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:.85rem}
+  .burger{display:flex}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero .lede{margin-inline:auto}
+  .hero-cta{justify-content:center}
+  .hero-visual{max-width:380px;margin:0 auto;order:-1;width:100%}
+  .custom{grid-template-columns:1fr}
+  .custom .visual{min-height:300px}
+  .craft{grid-template-columns:1fr}
+  .craft .item{border-right:0;border-bottom:1px solid var(--line-soft)}
+  .craft .item:last-child{border-bottom:0}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}
+  .usps{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;text-align:center;gap:.5rem}
+}
+@media(max-width:420px){
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== ANNOUNCEMENT ====== -->
+<div class="announce" id="announce">Rakhi Edit — 20% off, with a complimentary Rakhi gift box on every piece</div>
+
+<!-- ====== HEADER ====== -->
+<header>
+  <nav class="wrap nav">
+    <a class="brand" href="#top" aria-label="Pratha By Priyal home">
+      <img src="assets/logo.png" alt="Pratha By Priyal" onerror="this.onerror=null;this.src='assets/logo.jpg'" />
+      <span class="fallback">Pratha</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#rakhi">Rakhi Edit</a>
+      <!-- Hidden for now — re-enable when Party Wear launches
+      <a href="#party">Party Wear</a>
+      <a href="#casual">Everyday</a> -->
+      <a href="#custom">Custom</a>
+      <a href="#craft">The Craft</a>
+      <a class="nav-cta" href="#" data-wa="Hi Pratha By Priyal! I'd like to know more about your collection.">Order on WhatsApp</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="reveal">
+        <span class="eyebrow">Handcrafted · Made to your measure</span>
+        <h1 style="margin-top:1.4rem">Ethnic wear, <em>tailored</em> to you.</h1>
+        <p class="lede">Every Pratha piece is cut and stitched to your size — the drape of couture with the ease of ready-to-wear. Explore the collection, then place your order in one tap on WhatsApp.</p>
+        <div class="hero-cta">
+          <a class="btn btn-dark" href="#rakhi">Shop the Rakhi Edit</a>
+          <a class="btn btn-ghost" href="#custom">Design your own</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <!-- Hero photo: assets/hero.png (falls back to hero.jpg, then the wordmark) -->
+        <img src="assets/hero.png" alt="Pratha By Priyal" onload="this.closest('.hero-visual').classList.add('has-img')" onerror="if(this.src.indexOf('hero.png')>-1){this.src='assets/hero.jpg'}else{this.remove()}" />
+        <div class="mono">pratha<span>By Priyal</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== USP STRIP ====== -->
+  <div class="usps">
+    <div class="usp"><h4>Custom Tailored</h4><p>Stitched to your exact measurements</p></div>
+    <div class="usp"><h4>Made to Order</h4><p>Each piece crafted just for you</p></div>
+    <div class="usp"><h4>Rakhi Gift Box</h4><p>Rakhi, a note & your piece</p></div>
+    <div class="usp"><h4>Order on WhatsApp</h4><p>Personal, direct & effortless</p></div>
+  </div>
+
+  <!-- ====== RAKHI COLLECTION ====== -->
+  <section class="pad" id="rakhi">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Limited Edition</span>
+        <h2>The Rakhi Edit</h2>
+        <div class="rule"></div>
+        <p>Celebration-ready pieces at 20% off, each arriving in a full Rakhi gift box — a handpicked rakhi, a handwritten note, and your custom-tailored outfit.</p>
+      </div>
+
+      <div class="rakhi-note reveal">
+        <span class="chip"><b>Full Rakhi Box</b> included</span><span class="dot"></span>
+        <span class="chip"><b>Handpicked Rakhi</b></span><span class="dot"></span>
+        <span class="chip"><b>Handwritten Note</b></span><span class="dot"></span>
+        <span class="chip"><b>Tailored to your size</b></span>
+      </div>
+
+      <div class="grid" id="grid-rakhi"></div>
+    </div>
+  </section>
+
+  <!-- ====== PARTY WEAR (HIDDEN FOR NOW) ======
+  <section class="pad section-alt" id="party">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Occasion</span>
+        <h2>Party Wear</h2>
+        <div class="rule"></div>
+        <p>Statement silhouettes for the nights that call for a little more shimmer.</p>
+      </div>
+      <div class="grid" id="grid-party"></div>
+    </div>
+  </section>
+  ====== END PARTY WEAR ====== -->
+
+  <!-- ====== CASUAL DAILY WEAR (HIDDEN FOR NOW) ======
+  <section class="pad" id="casual">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Everyday</span>
+        <h2>Casual Daily Wear</h2>
+        <div class="rule"></div>
+        <p>Breathable cottons and easy co-ords for real days.</p>
+      </div>
+      <div class="grid" id="grid-casual"></div>
+    </div>
+  </section>
+  ====== END CASUAL ====== -->
+
+  <!-- ====== CUSTOM / DESIGNER ====== -->
+  <section class="pad section-alt" id="custom">
+    <div class="wrap">
+      <div class="custom reveal">
+        <div class="visual">
+          <img src="assets/custom.jpg" alt="Handcrafted beadwork embroidery by Pratha" onerror="this.remove()" />
+          <div class="mono">Your vision,<br>our needle.</div>
+        </div>
+        <div class="content">
+          <span class="eyebrow">Bespoke by Priyal</span>
+          <h2>Custom Pieces</h2>
+          <p>Have something in mind that isn't on the rack? Work directly with Priyal to bring your own vision to life — from the first sketch to the final stitch.</p>
+          <ul>
+            <li>Share your idea, inspiration or occasion</li>
+            <li>Choose fabric, colour, embroidery & silhouette together</li>
+            <li>Tailored to your exact measurements</li>
+            <li>Updates and approvals every step of the way</li>
+          </ul>
+          <a class="btn btn-dark" href="#" data-wa="Hi Priyal! I have a custom design idea I'd love to create with you. Here's what I'm imagining:">Contact the Designer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CRAFT ====== -->
+  <section class="pad" id="craft">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why Pratha</span>
+        <h2>The Craft Behind Every Piece</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="craft reveal">
+        <div class="item"><div class="n">01</div><h4>Made to your measure</h4><p>Nothing is generic. Every order is stitched to the measurements you share, so it fits like it was born for you.</p></div>
+        <div class="item"><div class="n">02</div><h4>Considered materials</h4><p>Fabrics chosen for drape, comfort and longevity — pieces meant to be worn and loved, season after season.</p></div>
+        <div class="item"><div class="n">03</div><h4>A personal order</h4><p>No cold checkout. You speak directly with us on WhatsApp, so every detail is right before we begin.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FINAL CTA ====== -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="finale reveal">
+        <span class="eyebrow">Ready when you are</span>
+        <h2 style="margin-top:1rem">Let's create something you'll treasure</h2>
+        <p>Message us to place an order, ask about sizing, or start a custom piece. We'd love to dress you for your next moment.</p>
+        <a class="btn btn-dark" href="#" data-wa="Hi Pratha By Priyal! I'd like to place an order / ask a question.">Message us on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.png" alt="Pratha By Priyal" onerror="this.onerror=null;this.src='assets/logo.jpg'" />
+        <p>Custom-tailored Indian ethnic wear, handcrafted and made to order. Dressing you for every celebration, big and small.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="#rakhi">Rakhi Edit</a>
+        <a href="#custom">Custom Pieces</a>
+        <a href="#craft">The Craft</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="#" data-wa="Hi Pratha By Priyal!">WhatsApp</a>
+        <a href="https://www.instagram.com/prathabypriyal/#/" target="_blank" rel="noopener">Instagram</a>
+        <span>Made to order · Ships across India</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Pratha By Priyal</span>
+      <span>Handcrafted · Custom tailored</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== FLOATING WHATSAPP ====== -->
+<a class="wa-float" href="#" data-wa="Hi Pratha By Priyal! I'd like to know more." aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.24.68-1.42 1.32-1.95 1.36-.5.05-.95.25-3.2-.67-2.7-1.06-4.42-3.8-4.55-3.98-.13-.18-1.09-1.45-1.09-2.77 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.14.43.12.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.86.27.14.45.2.51.31.07.11.07.64-.17 1.32Z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   ⚙️  EDIT ZONE — change only what's below
+   ========================================================= */
+
+// 1) WhatsApp number, international format, digits only (no +, spaces or dashes)
+const WHATSAPP_NUMBER = "919958106853";
+
+// 2) Your pieces. Edit name / price / (rakhi discount) / image freely.
+//    price = current selling price in INR (number)
+//    mrp   = optional original price for Rakhi pieces (shows strike-through). Omit for others.
+//    img   = optional path e.g. "assets/products/piece1.jpg". Leave "" for the elegant placeholder.
+const PRODUCTS = {
+  rakhi: [   // Rakhi Edit · 20% off · full Rakhi gift box
+    // price = sale price (customer pays) · mrp = original (= sale ÷ 0.8, so "20% off" is exact)
+    { name:"Surkhi",  price:6950,  mrp:8690,  img:"assets/products/rakhi1.png" },
+    { name:"Basanti", price:16450, mrp:20560, img:"assets/products/rakhi2.png" },
+    { name:"Kesar",   price:14500, mrp:18130, img:"assets/products/rakhi3.png" },
+    { name:"Chameli", price:6350,  mrp:7940,  img:"assets/products/rakhi4.png" },
+    { name:"Nazuk",   price:8990,  mrp:11240, img:"assets/products/rakhi5.png" },
+  ],
+  party: [   // hidden for now
+    { name:"Noor Sequin Lehenga",         price:8990, img:"" },
+    { name:"Zoya Velvet Anarkali",        price:6490, img:"" },
+    { name:"Ishani Draped Saree Gown",    price:7290, img:"" },
+    { name:"Rajwada Brocade Sharara",     price:6990, img:"" },
+    { name:"Gulaal Mirror-work Lehenga",  price:9490, img:"" },
+    { name:"Aabroo Cape Gown",            price:6790, img:"" },
+  ],
+  casual: [  // hidden for now
+    { name:"Sukoon Cotton Kurta Set",     price:2290, img:"" },
+    { name:"Kiara Straight Cotton Suit",  price:2490, img:"" },
+    { name:"Mitti Handblock Kurti",       price:1690, img:"" },
+    { name:"Roz Linen Co-ord Set",        price:2790, img:"" },
+    { name:"Pehnaava Mulmul Suit",        price:2390, img:"" },
+  ],
+};
+
+/* =========================================================
+   🚫  No need to edit below this line
+   ========================================================= */
+const CAT_LABEL = { rakhi:"Rakhi Edit", party:"Party Wear", casual:"Everyday" };
+const inr = n => "₹" + Number(n).toLocaleString("en-IN");
+const WA_SVG = '<svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Z"/></svg>';
+
+function waLink(text){
+  return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+}
+
+function cardHTML(p, cat){
+  const isRakhi = cat === "rakhi";
+  const hasMrp  = isRakhi && p.mrp && p.mrp > p.price;
+  const off = hasMrp ? Math.round((1 - p.price/p.mrp)*100) : 0;
+  const thumb = p.img
+    ? `<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="ph">${p.name}</div>`;
+  const badge = isRakhi ? `<span class="badge">${off}% Off</span>` : "";
+  const boxBadge = isRakhi ? `<span class="badge box">Rakhi Box</span>` : "";
+  const priceHTML = (p.price > 0)
+    ? (hasMrp
+        ? `<span class="now">${inr(p.price)}</span><span class="was">${inr(p.mrp)}</span><span class="off">${off}% off</span>`
+        : `<span class="now">${inr(p.price)}</span>`)
+    : `<span class="now" style="font-size:.85rem;color:var(--muted)">Price on request</span>`;
+
+  const msg = isRakhi
+    ? `Hi Pratha By Priyal! I'd like to order the "${p.name}" from the Rakhi Edit${p.price>0?` (${inr(p.price)}, incl. Rakhi gift box)`:""}. My measurements are:`
+    : `Hi Pratha By Priyal! I'd like to order the "${p.name}"${p.price>0?` (${inr(p.price)})`:""}. My measurements are:`;
+
+  return `<article class="card reveal">
+    <div class="thumb">${badge}${boxBadge}${thumb}</div>
+    <div class="card-body">
+      <span class="cat">${CAT_LABEL[cat]}</span>
+      <h3>${p.name}</h3>
+      <div class="price">${priceHTML}</div>
+      <a class="btn order" href="${waLink(msg)}" target="_blank" rel="noopener">${WA_SVG} Order on WhatsApp</a>
+    </div>
+  </article>`;
+}
+
+function render(cat){
+  const el = document.getElementById("grid-" + cat);
+  if(el) el.innerHTML = PRODUCTS[cat].map(p => cardHTML(p, cat)).join("");
+}
+["rakhi","party","casual"].forEach(render);
+
+// Wire all generic WhatsApp CTAs (data-wa)
+document.querySelectorAll("[data-wa]").forEach(a=>{
+  a.setAttribute("href", waLink(a.getAttribute("data-wa")));
+  a.setAttribute("target","_blank"); a.setAttribute("rel","noopener");
+});
+
+// Mobile menu
+const burger = document.getElementById("burger");
+const navLinks = document.getElementById("navLinks");
+burger.addEventListener("click", ()=> navLinks.classList.toggle("open"));
+navLinks.querySelectorAll("a").forEach(a=> a.addEventListener("click", ()=> navLinks.classList.remove("open")));
+
+// Year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
