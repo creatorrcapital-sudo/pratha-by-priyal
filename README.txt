@@ -24,11 +24,15 @@ IMAGES — ALL ADDED
 ------------------
 assets/logo.png            <- your logo (header + footer)
 assets/custom.jpg          <- beadwork photo (Custom Pieces section)
-assets/products/rakhi1.png <- Surkhi
-assets/products/rakhi2.png <- Basanti
-assets/products/rakhi3.png <- Kesar
-assets/products/rakhi4.png <- Chameli
-assets/products/rakhi5.png <- Nazuk
+assets/products/  <- 3 photos per piece (main + 2 thumbnails). Naming:
+    Surkhi   ->  rakhi1-1.png  rakhi1-2.png  rakhi1-3.png
+    Basanti  ->  rakhi2-1.png  rakhi2-2.png  rakhi2-3.png
+    Kesar    ->  rakhi3-1.png  rakhi3-2.png  rakhi3-3.png
+    Chameli  ->  rakhi4-1.png  rakhi4-2.png  rakhi4-3.png
+    Nazuk    ->  rakhi5-1.png  rakhi5-2.png  rakhi5-3.png
+  The "-1" photo is the main image; "-2" and "-3" become clickable thumbnails
+  on the card. Currently only the "-1" photos exist — add "-2" and "-3" and the
+  thumbnails appear automatically. Missing photos are hidden gracefully.
 (Optional) assets/hero.jpg <- a campaign photo to fill the hero panel beside the headline
 If any image is missing, the site falls back gracefully — nothing breaks.
 
