@@ -78,7 +78,7 @@ header{
 .brand{display:flex;align-items:center;gap:.7rem}
 .brand img{height:44px;width:auto}
 .brand .fallback{font-family:var(--serif);font-size:1.7rem;color:var(--ink);letter-spacing:.04em;display:none}
-.nav-links{display:flex;gap:2.4rem;align-items:center}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
 .nav-links a{
   font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
   opacity:.85;transition:.25s;position:relative;padding:.3rem 0;font-weight:400;
@@ -304,7 +304,9 @@ body.no-scroll{overflow:hidden}
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#rakhi">Rakhi Edit</a>
-      <a href="#archive">Archive</a>
+      <a href="#sarees">Sarees</a>
+      <a href="#lehengas">Lehengas</a>
+      <a href="#fusion">Indo-Western</a>
       <!-- Hidden for now — re-enable when Party Wear launches
       <a href="#party">Party Wear</a>
       <a href="#casual">Everyday</a> -->
@@ -367,16 +369,42 @@ body.no-scroll{overflow:hidden}
     </div>
   </section>
 
-  <!-- ====== THE ARCHIVE (sold out · made to order) ====== -->
-  <section class="pad section-alt" id="archive">
+  <!-- ====== SAREES ====== -->
+  <section class="pad section-alt" id="sarees">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Sold Out · Made to Order</span>
-        <h2>The Archive</h2>
+        <span class="eyebrow">30% Off</span>
+        <h2>Sarees</h2>
         <div class="rule"></div>
-        <p>Past Pratha creations, now sold out — but every piece can be lovingly recreated for you, made to order in your size. Tap any photo to view it up close.</p>
+        <p>Fluid drapes and hand-finished detailing — sarees made to your measure. Tap any photo to view it up close.</p>
       </div>
-      <div class="grid" id="grid-archive"></div>
+      <div class="grid" id="grid-sarees"></div>
+    </div>
+  </section>
+
+  <!-- ====== LEHENGAS ====== -->
+  <section class="pad" id="lehengas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">30% Off</span>
+        <h2>Lehengas</h2>
+        <div class="rule"></div>
+        <p>Celebration-ready silhouettes with sculpted blouses and sweeping skirts, tailored to fit you flawlessly.</p>
+      </div>
+      <div class="grid" id="grid-lehengas"></div>
+    </div>
+  </section>
+
+  <!-- ====== INDO-WESTERN ====== -->
+  <section class="pad section-alt" id="fusion">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Fusion</span>
+        <h2>Indo-Western</h2>
+        <div class="rule"></div>
+        <p>Modern, easy-to-wear fusion pieces. Some are sold out but can be made to order just for you.</p>
+      </div>
+      <div class="grid" id="grid-fusion"></div>
     </div>
   </section>
 
@@ -473,7 +501,9 @@ body.no-scroll{overflow:hidden}
       <div class="foot-col">
         <h5>Explore</h5>
         <a href="#rakhi">Rakhi Edit</a>
-        <a href="#archive">The Archive</a>
+        <a href="#sarees">Sarees</a>
+        <a href="#lehengas">Lehengas</a>
+        <a href="#fusion">Indo-Western</a>
         <a href="#custom">Custom Pieces</a>
         <a href="#craft">The Craft</a>
       </div>
@@ -528,14 +558,15 @@ const PRODUCTS = {
     { name:"Chameli", price:6350,  mrp:7940,  imgs:["assets/products/rakhi4-1.png","assets/products/rakhi4-2.png","assets/products/rakhi4-3.png"] },
     { name:"Nazuk",   price:8990,  mrp:11240, imgs:["assets/products/rakhi5-1.png","assets/products/rakhi5-2.png","assets/products/rakhi5-3.png"] },
   ],
-  archive: [  // The Archive · sold out · available made to order · no pricing
-    { name:"Noor",   imgs:["assets/products/soldout/soldout1.jpg"] },
-    { name:"Zoya",   imgs:["assets/products/soldout/soldout2.jpg"] },
-    { name:"Mehr",   imgs:["assets/products/soldout/soldout3-1.jpg","assets/products/soldout/soldout3-2.jpg"] },
-    { name:"Gulnaz", imgs:["assets/products/soldout/soldout4.jpg"] },
-    { name:"Sitara", imgs:["assets/products/soldout/soldout5.jpg"] },
-    { name:"Raabta", imgs:["assets/products/soldout/soldout6-1.jpg","assets/products/soldout/soldout6-2.jpg"] },
-    { name:"Anaya",  imgs:["assets/products/soldout/soldout7.jpg"] },
+  sarees: [   // 30% off
+    { name:"Noor", price:8750, mrp:12500, imgs:["assets/products/soldout/soldout1.jpg"] },
+  ],
+  lehengas: [ // 30% off
+    { name:"Zoya", price:17850, mrp:25500, imgs:["assets/products/soldout/soldout2.jpg"] },
+  ],
+  fusion: [   // Indo-Western — Mehr (30% off) + Gulnaz (sold out, made to order)
+    { name:"Mehr",   price:5985, mrp:8550, imgs:["assets/products/soldout/soldout3-1.jpg","assets/products/soldout/soldout3-2.jpg"] },
+    { name:"Gulnaz", soldOut:true,         imgs:["assets/products/soldout/soldout4.jpg"] },
   ],
   party: [   // hidden for now
     { name:"Noor Sequin Lehenga",         price:8990, img:"" },
@@ -557,7 +588,7 @@ const PRODUCTS = {
 /* =========================================================
    🚫  No need to edit below this line
    ========================================================= */
-const CAT_LABEL = { rakhi:"Rakhi Edit", archive:"The Archive", party:"Party Wear", casual:"Everyday" };
+const CAT_LABEL = { rakhi:"Rakhi Edit", sarees:"Sarees", lehengas:"Lehengas", fusion:"Indo-Western", party:"Party Wear", casual:"Everyday" };
 const inr = n => "₹" + Number(n).toLocaleString("en-IN");
 const WA_SVG = '<svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Z"/></svg>';
 
@@ -566,9 +597,9 @@ function waLink(text){
 }
 
 function cardHTML(p, cat){
-  const isRakhi   = cat === "rakhi";
-  const isArchive = cat === "archive";       // sold out · made to order · no pricing
-  const hasMrp  = isRakhi && p.mrp && p.mrp > p.price;
+  const isRakhi  = cat === "rakhi";
+  const soldOut  = !!p.soldOut;                                   // per-item: sold out · made to order
+  const hasMrp   = !soldOut && p.mrp && p.price && p.mrp > p.price;
   const off = hasMrp ? Math.round((1 - p.price/p.mrp)*100) : 0;
   const imgs = (p.imgs && p.imgs.length) ? p.imgs.slice(0,3) : (p.img ? [p.img] : []);
   const ph = `<div class="ph">${p.name}</div>`;
@@ -580,43 +611,37 @@ function cardHTML(p, cat){
         `<button type="button" class="gthumb${i===0?' active':''}" data-src="${s}" aria-label="View photo ${i+1} of ${p.name}"><img src="${s}" alt="" onerror="var g=this.closest('.gallery');this.closest('.gthumb').remove();if(g&&g.querySelectorAll('.gthumb').length<2)g.remove()"></button>`
       ).join("")}</div>`
     : "";
-  const badge = isRakhi ? `<span class="badge">${off}% Off</span>`
-              : isArchive ? `<span class="badge soldout">Sold Out</span>` : "";
-  const boxBadge = isRakhi ? `<span class="badge box">Rakhi Box</span>` : "";
 
-  // Archive: no price, show "Made to Order" and a made-to-order WhatsApp button
-  if(isArchive){
-    const msg = `Hi Pratha By Priyal! I love the "${p.name}" from your Archive (sold out). I'd like to get it made to order. My measurements are:`;
-    return `<article class="card reveal">
-      <div class="thumb">${badge}${ph}${mainImg}</div>
-      <div class="card-body">
-        ${gallery}
-        <span class="cat">${CAT_LABEL[cat]}</span>
-        <h3>${p.name}</h3>
-        <div class="price"><span class="madeto">Sold out · Made to order</span></div>
-        <a class="btn order madeto-btn" href="${waLink(msg)}" target="_blank" rel="noopener">${WA_SVG} Made to Order</a>
-      </div>
-    </article>`;
-  }
+  // Badges
+  let badges = "";
+  if(soldOut) badges += `<span class="badge soldout">Sold Out</span>`;
+  else if(hasMrp) badges += `<span class="badge">${off}% Off</span>`;
+  if(isRakhi && !soldOut) badges += `<span class="badge box">Rakhi Box</span>`;
 
-  const priceHTML = (p.price > 0)
-    ? (hasMrp
-        ? `<span class="now">${inr(p.price)}</span><span class="was">${inr(p.mrp)}</span><span class="off">${off}% off</span>`
-        : `<span class="now">${inr(p.price)}</span>`)
-    : `<span class="now" style="font-size:.85rem;color:var(--muted)">Price on request</span>`;
+  // Price line / made-to-order line
+  let infoHTML;
+  if(soldOut) infoHTML = `<span class="madeto">Sold out · Made to order</span>`;
+  else if(hasMrp) infoHTML = `<span class="now">${inr(p.price)}</span><span class="was">${inr(p.mrp)}</span><span class="off">${off}% off</span>`;
+  else if(p.price > 0) infoHTML = `<span class="now">${inr(p.price)}</span>`;
+  else infoHTML = `<span class="now" style="font-size:.85rem;color:var(--muted)">Price on request</span>`;
 
-  const msg = isRakhi
-    ? `Hi Pratha By Priyal! I'd like to order the "${p.name}" from the Rakhi Edit${p.price>0?` (${inr(p.price)}, incl. Rakhi gift box)`:""}. My measurements are:`
-    : `Hi Pratha By Priyal! I'd like to order the "${p.name}"${p.price>0?` (${inr(p.price)})`:""}. My measurements are:`;
+  // Button + WhatsApp message
+  const btnLabel = soldOut ? "Made to Order" : "Order on WhatsApp";
+  const priced = p.price > 0 ? ` (${inr(p.price)})` : "";
+  const msg = soldOut
+    ? `Hi Pratha By Priyal! I love the "${p.name}" (sold out). I'd like to get it made to order. My measurements are:`
+    : isRakhi
+      ? `Hi Pratha By Priyal! I'd like to order the "${p.name}" from the Rakhi Edit${p.price>0?` (${inr(p.price)}, incl. Rakhi gift box)`:""}. My measurements are:`
+      : `Hi Pratha By Priyal! I'd like to order the "${p.name}"${priced}. My measurements are:`;
 
   return `<article class="card reveal">
-    <div class="thumb">${badge}${boxBadge}${ph}${mainImg}</div>
+    <div class="thumb">${badges}${ph}${mainImg}</div>
     <div class="card-body">
       ${gallery}
       <span class="cat">${CAT_LABEL[cat]}</span>
       <h3>${p.name}</h3>
-      <div class="price">${priceHTML}</div>
-      <a class="btn order" href="${waLink(msg)}" target="_blank" rel="noopener">${WA_SVG} Order on WhatsApp</a>
+      <div class="price">${infoHTML}</div>
+      <a class="btn order${soldOut?' madeto-btn':''}" href="${waLink(msg)}" target="_blank" rel="noopener">${WA_SVG} ${btnLabel}</a>
     </div>
   </article>`;
 }
@@ -625,7 +650,7 @@ function render(cat){
   const el = document.getElementById("grid-" + cat);
   if(el) el.innerHTML = PRODUCTS[cat].map(p => cardHTML(p, cat)).join("");
 }
-["rakhi","archive","party","casual"].forEach(render);
+["rakhi","sarees","lehengas","fusion","party","casual"].forEach(render);
 
 // Product gallery: click a thumbnail to swap the main photo
 document.addEventListener("click", (e)=>{
