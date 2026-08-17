@@ -160,6 +160,7 @@ section.pad{padding:clamp(4.5rem,9vw,7.5rem) 0}
 .badge.box{top:auto;bottom:9px;left:9px}
 .badge.soldout{background:rgba(28,27,27,.82);color:#efedea;border-color:transparent;letter-spacing:.12em}
 .madeto{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.order.soldout-btn{color:var(--muted);border-color:var(--line);cursor:default;pointer-events:none;justify-content:center;letter-spacing:.2em}
 .card-body{padding:1rem .1rem 0;display:flex;flex-direction:column;gap:.45rem;flex:1}
 .card-body .cat{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 .card-body h3{font-weight:400;font-size:1.02rem;line-height:1.3;color:var(--ink);letter-spacing:.06em}
@@ -306,12 +307,12 @@ body.no-scroll{overflow:hidden}
       <a href="#rakhi">Rakhi Edit</a>
       <a href="#sarees">Sarees</a>
       <a href="#lehengas">Lehengas</a>
+      <a href="#suits">Suits</a>
       <a href="#fusion">Indo-Western</a>
       <!-- Hidden for now — re-enable when Party Wear launches
       <a href="#party">Party Wear</a>
       <a href="#casual">Everyday</a> -->
       <a href="#custom">Custom</a>
-      <a href="#craft">The Craft</a>
       <a class="nav-cta" href="#" data-wa="Hi Pratha By Priyal! I'd like to know more about your collection.">Order on WhatsApp</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -395,8 +396,21 @@ body.no-scroll{overflow:hidden}
     </div>
   </section>
 
+  <!-- ====== SUITS ====== -->
+  <section class="pad section-alt" id="suits">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Suit Sets</span>
+        <h2>Suits</h2>
+        <div class="rule"></div>
+        <p>Anarkalis, sharara sets and kurta pairings in rich fabrics and fine hand-work — tailored to your measure. Tap any photo to view it up close.</p>
+      </div>
+      <div class="grid" id="grid-suits"></div>
+    </div>
+  </section>
+
   <!-- ====== INDO-WESTERN ====== -->
-  <section class="pad section-alt" id="fusion">
+  <section class="pad" id="fusion">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Fusion</span>
@@ -503,6 +517,7 @@ body.no-scroll{overflow:hidden}
         <a href="#rakhi">Rakhi Edit</a>
         <a href="#sarees">Sarees</a>
         <a href="#lehengas">Lehengas</a>
+        <a href="#suits">Suits</a>
         <a href="#fusion">Indo-Western</a>
         <a href="#custom">Custom Pieces</a>
         <a href="#craft">The Craft</a>
@@ -558,15 +573,28 @@ const PRODUCTS = {
     { name:"Chameli", price:6350,  mrp:7940,  imgs:["assets/products/rakhi4-1.png","assets/products/rakhi4-2.png","assets/products/rakhi4-3.png"] },
     { name:"Nazuk",   price:8990,  mrp:11240, imgs:["assets/products/rakhi5-1.png","assets/products/rakhi5-2.png","assets/products/rakhi5-3.png"] },
   ],
-  sarees: [   // 30% off
-    { name:"Noor", price:8750, mrp:12500, imgs:["assets/products/soldout/soldout1.jpg"] },
+  sarees: [
+    { name:"Noor",  price:8750, mrp:12500, imgs:["assets/products/soldout/soldout1.jpg"] },
+    { name:"Sehar", soldOut:true, madeToOrder:true, imgs:["assets/products/other/10.jpg","assets/products/other/10-2.jpg","assets/products/other/10-3.jpg"] },
   ],
-  lehengas: [ // 30% off
-    { name:"Zoya", price:17850, mrp:25500, imgs:["assets/products/soldout/soldout2.jpg"] },
+  lehengas: [
+    { name:"Zoya",      price:17850, mrp:25500, imgs:["assets/products/soldout/soldout2.jpg"] },
+    { name:"Kahkashan", price:22050, mrp:31500, imgs:["assets/products/other/11-1.jpg","assets/products/other/11-2.jpg","assets/products/other/11-3.jpg","assets/products/other/11-4.jpg"] },
   ],
-  fusion: [   // Indo-Western — Mehr (30% off) + Gulnaz (sold out, made to order)
+  suits: [    // traditional suit sets — anarkali / sharara / kurta-pant
+    { name:"Sabza",   price:8750, mrp:12500, imgs:["assets/products/other/1.jpeg"] },
+    { name:"Sadaf",   soldOut:true,          imgs:["assets/products/other/2.jpeg"] },
+    { name:"Zohra",   soldOut:true,          imgs:["assets/products/other/3.jpeg"] },
+    { name:"Laila",   soldOut:true, madeToOrder:true, imgs:["assets/products/other/4.jpeg"] },
+    { name:"Meera",   soldOut:true, madeToOrder:true, imgs:["assets/products/other/5.jpeg"] },
+    { name:"Nilofer", soldOut:true,          imgs:["assets/products/other/6.jpeg"] },
+  ],
+  fusion: [   // Indo-Western
     { name:"Mehr",   price:5985, mrp:8550, imgs:["assets/products/soldout/soldout3-1.jpg","assets/products/soldout/soldout3-2.jpg"] },
-    { name:"Gulnaz", soldOut:true,         imgs:["assets/products/soldout/soldout4.jpg"] },
+    { name:"Saya",   price:9350,           imgs:["assets/products/other/7-1.jpeg","assets/products/other/7-2.jpeg","assets/products/other/7-3.jpeg"] },
+    { name:"Gulnaz", soldOut:true, madeToOrder:true, imgs:["assets/products/soldout/soldout4.jpg"] },
+    { name:"Roohi",  soldOut:true, madeToOrder:true, imgs:["assets/products/other/9.jpg","assets/products/other/9-2.jpg"] },
+    { name:"Bahaar", soldOut:true,          imgs:["assets/products/other/8-1.jpeg","assets/products/other/8-2.jpeg"] },
   ],
   party: [   // hidden for now
     { name:"Noor Sequin Lehenga",         price:8990, img:"" },
@@ -588,7 +616,7 @@ const PRODUCTS = {
 /* =========================================================
    🚫  No need to edit below this line
    ========================================================= */
-const CAT_LABEL = { rakhi:"Rakhi Edit", sarees:"Sarees", lehengas:"Lehengas", fusion:"Indo-Western", party:"Party Wear", casual:"Everyday" };
+const CAT_LABEL = { rakhi:"Rakhi Edit", sarees:"Sarees", lehengas:"Lehengas", suits:"Suits", fusion:"Indo-Western", party:"Party Wear", casual:"Everyday" };
 const inr = n => "₹" + Number(n).toLocaleString("en-IN");
 const WA_SVG = '<svg class="wa-ic" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Z"/></svg>';
 
@@ -597,11 +625,12 @@ function waLink(text){
 }
 
 function cardHTML(p, cat){
-  const isRakhi  = cat === "rakhi";
-  const soldOut  = !!p.soldOut;                                   // per-item: sold out · made to order
-  const hasMrp   = !soldOut && p.mrp && p.price && p.mrp > p.price;
+  const isRakhi = cat === "rakhi";
+  const soldOut = !!p.soldOut;
+  const mto     = soldOut && !!p.madeToOrder;                     // sold out AND can be made to order
+  const hasMrp  = !soldOut && p.mrp && p.price && p.mrp > p.price;
   const off = hasMrp ? Math.round((1 - p.price/p.mrp)*100) : 0;
-  const imgs = (p.imgs && p.imgs.length) ? p.imgs.slice(0,3) : (p.img ? [p.img] : []);
+  const imgs = (p.imgs && p.imgs.length) ? p.imgs.slice(0,4) : (p.img ? [p.img] : []);
   const ph = `<div class="ph">${p.name}</div>`;
   const mainImg = imgs.length
     ? `<img class="main" src="${imgs[0]}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
@@ -618,21 +647,27 @@ function cardHTML(p, cat){
   else if(hasMrp) badges += `<span class="badge">${off}% Off</span>`;
   if(isRakhi && !soldOut) badges += `<span class="badge box">Rakhi Box</span>`;
 
-  // Price line / made-to-order line
+  // Price / status line
   let infoHTML;
-  if(soldOut) infoHTML = `<span class="madeto">Sold out · Made to order</span>`;
+  if(soldOut) infoHTML = `<span class="madeto">${mto ? "Sold out · Made to order" : "Sold out"}</span>`;
   else if(hasMrp) infoHTML = `<span class="now">${inr(p.price)}</span><span class="was">${inr(p.mrp)}</span><span class="off">${off}% off</span>`;
   else if(p.price > 0) infoHTML = `<span class="now">${inr(p.price)}</span>`;
   else infoHTML = `<span class="now" style="font-size:.85rem;color:var(--muted)">Price on request</span>`;
 
-  // Button + WhatsApp message
-  const btnLabel = soldOut ? "Made to Order" : "Order on WhatsApp";
-  const priced = p.price > 0 ? ` (${inr(p.price)})` : "";
-  const msg = soldOut
-    ? `Hi Pratha By Priyal! I love the "${p.name}" (sold out). I'd like to get it made to order. My measurements are:`
-    : isRakhi
-      ? `Hi Pratha By Priyal! I'd like to order the "${p.name}" from the Rakhi Edit${p.price>0?` (${inr(p.price)}, incl. Rakhi gift box)`:""}. My measurements are:`
-      : `Hi Pratha By Priyal! I'd like to order the "${p.name}"${priced}. My measurements are:`;
+  // Action button
+  let actionHTML;
+  if(soldOut && !mto){
+    actionHTML = `<span class="btn order soldout-btn" aria-disabled="true">Sold Out</span>`;
+  } else {
+    const priced = p.price > 0 ? ` (${inr(p.price)})` : "";
+    const msg = mto
+      ? `Hi Pratha By Priyal! I love the "${p.name}" (sold out). I'd like to get it made to order. My measurements are:`
+      : isRakhi
+        ? `Hi Pratha By Priyal! I'd like to order the "${p.name}" from the Rakhi Edit${p.price>0?` (${inr(p.price)}, incl. Rakhi gift box)`:""}. My measurements are:`
+        : `Hi Pratha By Priyal! I'd like to order the "${p.name}"${priced}. My measurements are:`;
+    const label = mto ? "Made to Order" : "Order on WhatsApp";
+    actionHTML = `<a class="btn order${mto?' madeto-btn':''}" href="${waLink(msg)}" target="_blank" rel="noopener">${WA_SVG} ${label}</a>`;
+  }
 
   return `<article class="card reveal">
     <div class="thumb">${badges}${ph}${mainImg}</div>
@@ -641,7 +676,7 @@ function cardHTML(p, cat){
       <span class="cat">${CAT_LABEL[cat]}</span>
       <h3>${p.name}</h3>
       <div class="price">${infoHTML}</div>
-      <a class="btn order${soldOut?' madeto-btn':''}" href="${waLink(msg)}" target="_blank" rel="noopener">${WA_SVG} ${btnLabel}</a>
+      ${actionHTML}
     </div>
   </article>`;
 }
@@ -650,7 +685,7 @@ function render(cat){
   const el = document.getElementById("grid-" + cat);
   if(el) el.innerHTML = PRODUCTS[cat].map(p => cardHTML(p, cat)).join("");
 }
-["rakhi","sarees","lehengas","fusion","party","casual"].forEach(render);
+["rakhi","sarees","lehengas","suits","fusion","party","casual"].forEach(render);
 
 // Product gallery: click a thumbnail to swap the main photo
 document.addEventListener("click", (e)=>{
