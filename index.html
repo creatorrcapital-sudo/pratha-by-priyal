@@ -97,16 +97,61 @@ header{
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:.4rem}
 .burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
 
-/* ---------- Hero ---------- */
-.hero{min-height:84vh;display:flex;align-items:center;padding:5rem 0;border-bottom:1px solid var(--line-soft)}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
-.hero h1{
-  font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.22;color:var(--ink);
-  letter-spacing:.5px;
+/* ---------- Hero (cinematic reveal) ---------- */
+.hero-anim{position:relative;height:calc(100svh - 96px);min-height:540px;border-bottom:1px solid var(--line-soft);overflow:hidden}
+.hero-grid{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(30vw,430px);aspect-ratio:1;display:flex;flex-direction:column;gap:1em;z-index:2;
 }
-.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400}
-.hero .lede{color:var(--ink-soft);font-size:1rem;max-width:42ch;margin:1.8rem 0 2.4rem;line-height:1.9}
+body.intro .hero-grid{z-index:130}   /* rides above the dark overlay during the intro */
+.hg-row{flex:1;display:flex;gap:1em}
+.hg-img{position:relative;flex:1;overflow:hidden;background:var(--bg-2);clip-path:polygon(0% 0%,100% 0%,100% 0%,0% 0%)}
+.hg-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-banner{
+  position:absolute;top:45%;left:50%;transform:translate(-50%,-50%) scale(0);
+  width:16%;aspect-ratio:4/5;z-index:1;overflow:hidden;
+}
+.hero-banner img{width:100%;height:100%;object-fit:cover}
+.intro-copy{
+  position:absolute;top:44%;transform:translateY(-50%);width:100%;padding:0 5vw;
+  display:flex;justify-content:space-between;align-items:center;z-index:3;pointer-events:none;
+}
+.intro-copy h3{font-weight:400;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft)}
+.hero-title{position:absolute;bottom:7%;left:0;width:100%;text-align:center;z-index:3;padding:0 1rem}
+.hero-title h1{font-weight:400;font-size:clamp(2rem,4.2vw,3.2rem);line-height:1.22;color:var(--ink);letter-spacing:.5px}
+.hero-title h1 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.wline{display:inline-block;overflow:hidden;vertical-align:bottom}
+.wline .word{display:inline-block;transform:translateY(110%);will-change:transform}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-title .hero-cta{justify-content:center;margin-top:1.7rem;opacity:0;transform:translateY(14px)}
+
+/* ---------- Intro overlay ---------- */
+.intro-overlay{
+  position:fixed;inset:0;z-index:120;background:var(--ink);color:#efedea;
+  display:none;gap:2em;padding:2em;overflow:hidden;
+}
+body.intro .intro-overlay{display:flex}
+.io-col,.io-loader{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1em}
+.io-loader{align-items:center;gap:.2rem}
+.io-loader h1{
+  font-family:var(--serif);font-style:italic;font-weight:400;font-size:2.6rem;line-height:1;letter-spacing:.05em;
+  color:#514c46;-webkit-text-fill-color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:linear-gradient(0deg,#514c46,#514c46 50%,#efedea 0);
+  background-size:100% 200%;background-position:0% 100%;
+}
+.io-head,.io-item{display:flex;gap:2em;opacity:0}
+.io-head p,.io-item p{flex:1;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase}
+.io-locations{align-items:center}
+.io-locations .io-head,.io-locations .io-item{width:50%}
+.io-item{color:#7d786f}
+
+/* Final state — used when GSAP can't run (reduced motion / CDN blocked) */
+.hero-done .intro-overlay{display:none!important}
+.hero-done .hg-hero{clip-path:polygon(20% 10%,80% 10%,80% 90%,20% 90%);transform:scale(4)}
+.hero-done .hero-banner-1{left:40%;transform:translate(-50%,-50%) rotate(-20deg) scale(1)}
+.hero-done .hero-banner-2{left:60%;transform:translate(-50%,-50%) rotate(20deg) scale(1)}
+.hero-done .wline .word{transform:none}
+.hero-done .hero-title .hero-cta{opacity:1;transform:none}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.6rem;cursor:pointer;border:0;
   font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
@@ -116,16 +161,6 @@ header{
 .btn-dark:hover{background:#000}
 .btn-ghost{border:1px solid var(--ink);color:var(--ink);background:transparent}
 .btn-ghost:hover{background:var(--ink);color:var(--bg)}
-
-.hero-visual{
-  aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--bg-2);
-  border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;text-align:center;
-}
-.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-visual.has-img{border:0}
-.hero-visual.has-img .mono{display:none}
-.hero-visual .mono{font-family:var(--serif);color:var(--ink);font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:.04em;padding:2rem;z-index:1}
-.hero-visual .mono span{display:block;font-family:var(--sans);font-size:.24em;letter-spacing:.5em;color:var(--muted);margin-top:.6rem;text-transform:uppercase}
 
 /* ---------- USP strip ---------- */
 .usps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border-block:1px solid var(--line-soft)}
@@ -272,10 +307,13 @@ body.no-scroll{overflow:hidden}
   .nav-links.open{transform:none}
   .nav-links a{font-size:.85rem}
   .burger{display:flex}
-  .hero-inner{grid-template-columns:1fr;text-align:center}
-  .hero .lede{margin-inline:auto}
-  .hero-cta{justify-content:center}
-  .hero-visual{max-width:380px;margin:0 auto;order:-1;width:100%}
+  .hero-grid{width:min(74vw,360px);gap:.6em}
+  .hg-row{gap:.6em}
+  .hero-banner,.intro-copy{display:none}
+  .hero-title{bottom:14%}
+  .hero-title h1{font-size:2rem}
+  .io-col{display:none}
+  .io-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
   .custom{grid-template-columns:1fr}
   .custom .visual{min-height:300px}
   .craft{grid-template-columns:1fr}
@@ -295,6 +333,33 @@ body.no-scroll{overflow:hidden}
 </style>
 </head>
 <body>
+<script>document.body.classList.add('intro','no-scroll');</script>
+
+<!-- ====== INTRO OVERLAY (cinematic hero reveal) ====== -->
+<div class="intro-overlay" aria-hidden="true">
+  <div class="io-col io-collections">
+    <div class="io-head"><p>Collection</p><p>Craft</p></div>
+    <div class="io-item"><p>Rakhi Edit</p><p>Gift Box</p></div>
+    <div class="io-item"><p>Sarees</p><p>Hand Finished</p></div>
+    <div class="io-item"><p>Lehengas</p><p>Sculpted</p></div>
+    <div class="io-item"><p>Suits</p><p>Anarkali</p></div>
+    <div class="io-item"><p>Indo-Western</p><p>Fusion</p></div>
+    <div class="io-item"><p>Custom</p><p>Bespoke</p></div>
+  </div>
+  <div class="io-loader">
+    <h1 class="logo-line-1">Pratha</h1>
+    <h1 class="logo-line-2">By Priyal</h1>
+  </div>
+  <div class="io-col io-locations">
+    <div class="io-head"><p>Made For</p></div>
+    <div class="io-item"><p>Raksha Bandhan</p></div>
+    <div class="io-item"><p>Weddings</p></div>
+    <div class="io-item"><p>Festive Days</p></div>
+    <div class="io-item"><p>Sangeet Nights</p></div>
+    <div class="io-item"><p>Every Day</p></div>
+    <div class="io-item"><p>You</p></div>
+  </div>
+</div>
 
 <!-- ====== ANNOUNCEMENT ====== -->
 <div class="announce" id="announce">Rakhi Edit — 20% off, with a complimentary Rakhi gift box on every piece</div>
@@ -324,22 +389,45 @@ body.no-scroll{overflow:hidden}
 
 <main id="top">
 
-  <!-- ====== HERO ====== -->
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="reveal">
-        <span class="eyebrow">Handcrafted · Made to your measure</span>
-        <h1 style="margin-top:1.4rem">Ethnic wear, <em>tailored</em> to you.</h1>
-        <p class="lede">Every Pratha piece is cut and stitched to your size — the drape of couture with the ease of ready-to-wear. Explore the collection, then place your order in one tap on WhatsApp.</p>
-        <div class="hero-cta">
-          <a class="btn btn-dark" href="#rakhi">Shop the Rakhi Edit</a>
-          <a class="btn btn-ghost" href="#custom">Design your own</a>
-        </div>
+  <!-- ====== HERO (cinematic reveal) ====== -->
+  <section class="hero-anim">
+    <div class="hero-grid">
+      <div class="hg-row">
+        <div class="hg-img"><img src="assets/products/rakhi1-1.png" alt="" /></div>
+        <div class="hg-img"><img src="assets/products/other/1.jpeg" alt="" /></div>
+        <div class="hg-img"><img src="assets/products/rakhi3-2.png" alt="" /></div>
       </div>
-      <div class="hero-visual reveal">
-        <!-- Hero photo: assets/hero.png (falls back to hero.jpg, then the wordmark) -->
-        <img src="assets/hero.png" alt="Pratha By Priyal" onload="this.closest('.hero-visual').classList.add('has-img')" onerror="if(this.src.indexOf('hero.png')>-1){this.src='assets/hero.jpg'}else{this.remove()}" />
-        <div class="mono">pratha<span>By Priyal</span></div>
+      <div class="hg-row">
+        <div class="hg-img"><img src="assets/products/other/7-1.jpeg" alt="" /></div>
+        <div class="hg-img hg-hero"><img src="assets/hero.png" alt="Pratha By Priyal" /></div>
+        <div class="hg-img"><img src="assets/products/rakhi2-1.png" alt="" /></div>
+      </div>
+      <div class="hg-row">
+        <div class="hg-img"><img src="assets/products/other/11-1.jpg" alt="" /></div>
+        <div class="hg-img"><img src="assets/products/rakhi5-1.png" alt="" /></div>
+        <div class="hg-img"><img src="assets/products/soldout/soldout2.jpg" alt="" /></div>
+      </div>
+    </div>
+
+    <div class="hero-banner hero-banner-1"><img src="assets/products/rakhi2-2.png" alt="" /></div>
+    <div class="hero-banner hero-banner-2"><img src="assets/products/rakhi3-1.png" alt="" /></div>
+
+    <div class="intro-copy">
+      <h3><span class="wline"><span class="word">Handcrafted</span></span> <span class="wline"><span class="word">in</span></span> <span class="wline"><span class="word">India</span></span></h3>
+      <h3><span class="wline"><span class="word">Made</span></span> <span class="wline"><span class="word">to</span></span> <span class="wline"><span class="word">your</span></span> <span class="wline"><span class="word">measure</span></span></h3>
+    </div>
+
+    <div class="hero-title">
+      <h1 aria-label="Ethnic wear, tailored to you.">
+        <span class="wline"><span class="word">Ethnic</span></span>
+        <span class="wline"><span class="word">wear,</span></span>
+        <span class="wline"><span class="word"><em>tailored</em></span></span>
+        <span class="wline"><span class="word">to</span></span>
+        <span class="wline"><span class="word">you.</span></span>
+      </h1>
+      <div class="hero-cta">
+        <a class="btn btn-dark" href="#rakhi">Shop the Rakhi Edit</a>
+        <a class="btn btn-ghost" href="#custom">Design your own</a>
       </div>
     </div>
   </section>
@@ -553,6 +641,131 @@ body.no-scroll{overflow:hidden}
 <a class="wa-float" href="#" data-wa="Hi Pratha By Priyal! I'd like to know more." aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.24.68-1.42 1.32-1.95 1.36-.5.05-.95.25-3.2-.67-2.7-1.06-4.42-3.8-4.55-3.98-.13-.18-1.09-1.45-1.09-2.77 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.39-.06.6.46.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.14.43.12.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.6-.14.24.09 1.55.73 1.81.86.27.14.45.2.51.31.07.11.07.64-.17 1.32Z"/></svg>
 </a>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+/* =========================================================
+   🎬  CINEMATIC HERO REVEAL (grid flicker → zoom)
+   ========================================================= */
+(function(){
+  const finishInstantly = () => {
+    document.documentElement.classList.add("hero-done");
+    document.body.classList.remove("intro","no-scroll");
+  };
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!window.gsap || reduced){ finishInstantly(); return; }
+
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create("hop", "0.9, 0, 0.1, 1");
+
+  const HERO_SRC = "assets/hero.png";
+  // Rotation pool — pulled from the existing product library
+  const POOL = [
+    "assets/products/rakhi1-1.png","assets/products/rakhi1-2.png","assets/products/rakhi1-3.png",
+    "assets/products/rakhi2-1.png","assets/products/rakhi2-2.png","assets/products/rakhi2-3.png",
+    "assets/products/rakhi3-1.png","assets/products/rakhi3-2.png","assets/products/rakhi3-3.png",
+    "assets/products/rakhi4-1.png","assets/products/rakhi4-2.png","assets/products/rakhi4-3.png",
+    "assets/products/rakhi5-1.png","assets/products/rakhi5-2.png","assets/products/rakhi5-3.png",
+    "assets/products/other/1.jpeg","assets/products/other/2.jpeg","assets/products/other/3.jpeg",
+    "assets/products/other/4.jpeg","assets/products/other/5.jpeg","assets/products/other/6.jpeg",
+    "assets/products/other/7-1.jpeg","assets/products/other/7-2.jpeg","assets/products/other/7-3.jpeg",
+    "assets/products/other/8-1.jpeg","assets/products/other/8-2.jpeg","assets/products/other/9.jpg",
+    "assets/products/other/10.jpg","assets/products/other/11-1.jpg","assets/products/other/11-2.jpg",
+    "assets/products/soldout/soldout1.jpg","assets/products/soldout/soldout2.jpg",
+    "assets/products/soldout/soldout3-1.jpg","assets/products/soldout/soldout4.jpg","assets/products/soldout/soldout5.jpg",
+  ];
+  [HERO_SRC, ...POOL].forEach(s => { const i = new Image(); i.src = s; });
+
+  const cells = gsap.utils.toArray(".hg-img");
+  const heroCell = document.querySelector(".hg-hero");
+  const rest = cells.filter(c => c !== heroCell);
+  const titleWords = gsap.utils.toArray(".hero-title .word");
+  const copyWords = gsap.utils.toArray(".intro-copy .word");
+
+  const randomSet = () => [...POOL].sort(() => 0.5 - Math.random()).slice(0, cells.length);
+
+  function startRotation(){
+    const cycles = 20;
+    for(let c = 0; c < cycles; c++){
+      gsap.delayedCall(c * 0.15, () => {
+        const set = randomSet();
+        cells.forEach((cell, i) => {
+          const img = cell.querySelector("img");
+          if(c === cycles - 1 && cell === heroCell){
+            img.src = HERO_SRC;
+            gsap.set(img, { scale: 2 });
+          } else {
+            img.src = set[i];
+          }
+        });
+      });
+    }
+  }
+
+  // Initial states
+  gsap.set(["header", ".announce"], { y: "-125%" });
+  gsap.set(".wa-float", { opacity: 0, scale: 0.6 });
+  gsap.set([titleWords, copyWords], { y: "110%" });
+
+  // 1 — dark overlay: brand loader + collection ledger
+  const overlayTl = gsap.timeline();
+  overlayTl.to(".logo-line-1", {
+    backgroundPosition: "0% 0%", duration: 1, ease: "none", delay: 0.5,
+    onComplete: () => gsap.to(".logo-line-2", { backgroundPosition: "0% 0%", duration: 1, ease: "none" })
+  });
+  overlayTl.to(".io-collections .io-head, .io-collections .io-item", { opacity: 1, duration: 0.15, stagger: 0.075, delay: 1 });
+  overlayTl.to(".io-locations .io-head, .io-locations .io-item", { opacity: 1, duration: 0.15, stagger: 0.075 }, "<");
+  overlayTl.to(".io-collections .io-item", { color: "#efedea", duration: 0.15, stagger: 0.075 });
+  overlayTl.to(".io-locations .io-item", { color: "#efedea", duration: 0.15, stagger: 0.075 }, "<");
+  overlayTl.to(".io-collections .io-head, .io-collections .io-item", { opacity: 0, duration: 0.15, stagger: 0.075 });
+  overlayTl.to(".io-locations .io-head, .io-locations .io-item", { opacity: 0, duration: 0.15, stagger: 0.075 }, "<");
+  overlayTl.to(".intro-overlay", {
+    opacity: 0, duration: 0.5, delay: 1.5,
+    onComplete: () => {
+      gsap.set(".intro-overlay", { display: "none" });
+      document.body.classList.remove("intro","no-scroll");
+    }
+  });
+
+  // 2 — image grid: reveal, flicker through the library, zoom the hero
+  const imagesTl = gsap.timeline();
+  imagesTl.to(".hg-img", {
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    duration: 1, delay: 2.5, stagger: 0.05, ease: "hop",
+    onStart: () => {
+      setTimeout(() => {
+        startRotation();
+        gsap.to(".io-loader", { opacity: 0, duration: 0.3 });
+      }, 1000);
+    }
+  });
+  imagesTl.to(rest, {
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+    duration: 1, delay: 2.5, stagger: 0.05, ease: "hop"
+  });
+  imagesTl.to(".hg-hero", { y: -50, duration: 1, ease: "hop" });
+  imagesTl.to(".hg-hero", {
+    scale: 4,
+    clipPath: "polygon(20% 10%, 80% 10%, 80% 90%, 20% 90%)",
+    duration: 1.5, ease: "hop",
+    onStart: () => {
+      gsap.to(".hg-hero img", { scale: 1, duration: 1.5, ease: "hop" });
+      gsap.to(".hero-banner", { scale: 1, delay: 0.5, duration: 0.5 });
+      gsap.to(["header", ".announce"], { y: "0%", duration: 1, ease: "hop", delay: 0.25 });
+      gsap.to(".wa-float", { opacity: 1, scale: 1, duration: 0.6, delay: 0.5 });
+    }
+  });
+  imagesTl.to(".hero-banner-1", { left: "40%", rotate: -20, duration: 1.5, delay: 0.5, ease: "hop" }, "<");
+  imagesTl.to(".hero-banner-2", { left: "60%", rotate: 20, duration: 1.5, ease: "hop" }, "<");
+
+  // 3 — headline, side copy, CTAs
+  const textTl = gsap.timeline();
+  textTl.to(titleWords, { y: "0%", duration: 1, stagger: 0.1, delay: 9.5, ease: "power3.out" });
+  textTl.to(copyWords, { y: "0%", duration: 1, stagger: 0.1, delay: 0.25, ease: "power3.out" }, "<");
+  textTl.to(".hero-title .hero-cta", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5");
+})();
+</script>
 
 <script>
 /* =========================================================
